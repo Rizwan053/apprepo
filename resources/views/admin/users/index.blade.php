@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="container img-thumbnail">
   <h2>Users Table</h2>
   <p>User That Register to this Application</p>       
 <a class="btn btn-primary" href="users/create">Add New User</a>     
@@ -10,6 +10,7 @@
     <thead>
       <tr>
         <th>ID</th>
+        <th>User Image</th>
         <th>Name</th>
         <th>Email</th>
         <th>Role</th>
@@ -25,7 +26,8 @@
 @foreach($users as $user)
       <tr>
       <td>{{$user->id}}</td>
-      <td>{{$user->name}}</td>
+      <td><img width=50 height=50 src="{{$user->photo ? $user->photo->path:'/images/Not_Available.jpg'}}"></td>
+      <td><a href="{{route('admin.users.edit',$user->id)}}">{{$user->name}}</a></td>
       <td>{{$user->email}}</td>
       <td>{{$user->role->name}}</td>
       <td>

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="wrapper">
+<div class="container img-thumbnail">
 <h1 class="text-primary">Add New User</h1>
 {!!Form::open(['method'=>'POST','action'=>'AdminUsersController@store','files'=>true]) !!}
 <div class='form-group'>
@@ -17,8 +17,8 @@
 {!! Form::password('password',['class'=>'form-control']) !!}
 </div>
 <div class='form-group'>
-{!! Form::label('file', 'Upload File:') !!}
-{!! Form::file('file',['class'=>'']) !!}
+{!! Form::label('photo_id', 'Upload File:') !!}
+{!! Form::file('photo_id',null,['class'=>'']) !!}
 </div>
 <div class='form-group'>
 {!! Form::label('role_id', 'Role:') !!}
