@@ -38,19 +38,30 @@
 </div>
 
 <div class='form-group'>
-{!! Form::submit('Edit User',['class'=>'form-control btn btn-primary']) !!}
+{!! Form::submit('Edit User',['class'=>' form-control btn btn-primary']) !!}
+</div>
+
+{!!Form::open(['method'=>'DELETE','action'=>['AdminUsersController@destroy',$user->id]])!!}
+<div class='form-group'>
+{!! Form::submit('Delete User',['class'=>'form-control btn btn-danger']) !!}
 </div>
 {!! Form::close() !!}
 
 
 
+{!! Form::close() !!}
+
 
 </div>
+
+
 
 <div class="col-sm-3">
 <img  src="{{$user->photo ? $user->photo->path:'/images/Not_Available.jpg'}}" alt="user_img" class="img-responsive img-rounded ">
-
 </div>
+
+
+
 
 </div>
 @endsection

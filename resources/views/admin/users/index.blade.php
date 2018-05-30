@@ -3,6 +3,14 @@
 @section('content')
 
 <div class="container img-thumbnail">
+
+@if(Session::has('deleted_user'))
+
+<p class="alert-danger">{{session('deleted_user')}}</p>
+
+@endif
+
+
   <h2>Users Table</h2>
   <p>User That Register to this Application</p>       
 <a class="btn btn-primary" href="users/create">Add New User</a>     
