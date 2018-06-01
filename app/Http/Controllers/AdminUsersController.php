@@ -130,13 +130,14 @@ if(trim($request->password)==''){
      */
     public function destroy($id)
     {
-       $user = User::findorFail($id);
-       
+        $user = User::findorFail($id);
+
         unlink(public_path().$user->photo->path);
-       $user->delete();
 
-       Session::flash("deleted_user",'The User Has Been Deleted');
+        $user->delete();
 
-       return redirect('/admin/users');
+        Session::flash("deleted_user",'The User Has Been Deleted');
+
+        return redirect('/admin/users');
     }
 }

@@ -19,17 +19,23 @@
 <th>Updated At</th>
 </tr>
 </thead>
-<tbody>    
+<a href="{{route('admin.posts.create')}}" class="btn btn-primary">Add New Post</a>    
+<tbody>
 @if($posts)
 @foreach($posts as $post)
+
 <tr>
-<td>{{$post->id ? $post->id : 'Not Available'}}</td>
+<td><a href="{{route('admin.posts.edit',$post->id)}}">
+{{$post->id ? $post->id : 'Not Available'}}</a></td>
+
+
 <td><img width=50 height=50 src="{{$post->photo ? $post->photo->path : '/images/Not_Available.jpg'}}" alt=""></td>
 
 <td>{{$post->user->name ? $post->user->name : 'Not Available'}}</td>
 <td>{{$post->category ? $post->category->name : 'Not Available'}}</td>
-<td>{{$post->title ? $post->title : 'Not Available'}}</td>
-<td>{{$post->body ? $post->body : 'Not Available'}}</td>
+<td><a href="{{route('admin.posts.edit',$post->id)}}">
+{{$post->title ? $post->title : 'Not Available'}}</a></td>
+<td>{{$post->body ? str_limit($post->body,20) : 'Not Available'}}</td>
 <td>{{$post->created_at ? $post->created_at->diffForhumans() : 'Not Available'}}</td>
 <td>{{$post->updated_at ? $post->updated_at->diffForhumans() : 'Not Available'}}</td>
 </tr>

@@ -98,7 +98,11 @@ class AdminPostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findorFail($id);
+        
+        $categories = Category::lists('name', 'id')->all();
+        
+        return view('admin.posts.edit', compact('post','categories'));
     }
 
     /**
@@ -108,9 +112,36 @@ class AdminPostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostCreateRequest $request, $id)
     {
-        //
+
+        $input = $request->all();
+
+
+
+
+        if ($file = $request->file('photo_id')) {
+
+
+            $name = time() . $file->getClientOriginalName();
+
+
+            $file->move('images', $name);
+
+            $photo = Photo::create(['path' => $name]);
+
+
+            $input['photo_id'] = $photo->id;
+
+
+
+        }
+        $post =Post::findorfail($id)->update($input);
+        return redirect('/admin/posts');
+
+
+        // $user =  Auth::user()->posts()->findorFail($id)->update($input);
+            
     }
 
     /**
@@ -121,6 +152,11 @@ class AdminPostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $post = Post::findorFail($id);
+        unlink(public_path() . $post->photo->path);
+        $post->delete();
+        return redirect('/admin/posts');
+        
     }
 }
