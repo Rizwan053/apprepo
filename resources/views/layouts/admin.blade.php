@@ -19,7 +19,7 @@
     <link href="/css/libs/sb-admin-2.css" rel="stylesheet">
     <link href="/css/libs/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-    
+    @yield('styles')
 
     {{-- <link href="{{asset('css/libs.css')}}" rel="stylesheet"> --}}
 
@@ -177,11 +177,11 @@
                         <a href="#"><i class="fa fa-wrench fa-fw"></i>Media<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/media">All Media</a>
+                                <a href="{{route('admin.medias.index')}}">All Media</a>
                             </li>
 
                             <li>
-                                <a href="">Upload Media</a>
+                                <a href="{{route('admin.medias.create')}}">Upload Media</a>
                             </li>
 
                         </ul>
@@ -359,6 +359,7 @@
 <script src="js/libs/metisMenu.js"></script>
 <script src="js/libs/sb-admin-2.js"></script>
 <script src="js/libs/scripts.js"></script>
+
 
 
 @yield('footer')
