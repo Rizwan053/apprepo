@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
+@include('includes.tinyeditor')
+
 
 <div class="container-fluid img-thmbnail">
 <h1 class="text-primary">Edit Post</h1><hr>

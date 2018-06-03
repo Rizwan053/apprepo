@@ -8,12 +8,24 @@
 
 
 @if($photos)
+<form class="form-inline" action="/delete/media" method="post">
+    {{csrf_field()}}
+    {{method_field('delete')}}
+    <div class="form-group">
+        <select name="checkBoxArray" id="" class='form-control'>
+            <option value="delete">Delete</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary">
+    </div>
 <table class=table table-hover>
 
 <thead>
 <tr>
+<th><input type="checkbox" id="options"></th>
 <th>ID</th>
-<th>Name</th>
+<th>Media</th>
 <th>Created</th>
 <th>Delete</th>
 </tr>
@@ -22,6 +34,8 @@
 <tbody>
 @foreach($photos as $photo)    
 <tr>
+<td><input type="checkbox" name="checkBoxArray[]" value="{{$photo->id}}" class="checkBoxes"></td>
+    
 <td>{{$photo->id ? $photo->id : 'Not Available'}}</td>
 <td><img width=50 height=50 src="{{$photo ? $photo->path : '/images/Not_Available.jpg'}}" alt=""></td>
 <td>{{$photo->created_at ? $photo->created_at->diffForhumans(): 'Not Available'}}</td>
@@ -39,8 +53,32 @@
 @endforeach
 </tbody>
 </table>
+</form>
+
 
 @endif
 </div>
+
+
+
+@stop
+
+@section('scripts')
+<script>
+    $(document).ready(function(){
+        $('#options').click(function(){
+            if(this.checked){
+            $('.checkBoxes').each(function(){
+               this.checked = true;
+            });
+            }else{
+                $('.checkBoxes').each(function(){
+               this.checked = false;
+            });
+                
+            }
+        });
+    });
+</script>
 
 @stop
