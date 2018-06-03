@@ -15,6 +15,7 @@
 <th>Category</th>
 <th>Title</th>
 <th>Body</th>
+<th>View Post</th>
 <th>Created At</th>
 <th>Updated At</th>
 </tr>
@@ -36,6 +37,8 @@
 <td><a href="{{route('admin.posts.edit',$post->id)}}">
 {{$post->title ? $post->title : 'Not Available'}}</a></td>
 <td>{{$post->body ? str_limit($post->body,20) : 'Not Available'}}</td>
+<td><a href="{{route('home.post',$post->slug)}}" class="btn btn-success">View</a></td>
+{{-- <td><a href="{{route('admin.comment.show',$post->id)}}" class="btn btn-success">View</a></td> --}}
 <td>{{$post->created_at ? $post->created_at->diffForhumans() : 'Not Available'}}</td>
 <td>{{$post->updated_at ? $post->updated_at->diffForhumans() : 'Not Available'}}</td>
 </tr>
@@ -46,5 +49,10 @@
 </table>
 </div>
 
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-5">
+        {{$posts->render()}}
 
+    </div>
+</div>
 @stop
