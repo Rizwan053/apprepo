@@ -33,18 +33,18 @@
 @if($users)
 @foreach($users as $user)
       <tr>
-      <td>{{$user->id}}</td>
+      <td>{{$user->id ? $user->id : 'Not Available'}}</td>
       <td><img width=50 height=50 src="{{$user->photo ? $user->photo->path:'/images/Not_Available.jpg'}}"></td>
-      <td><a href="{{route('admin.users.edit',$user->id)}}">{{$user->name}}</a></td>
-      <td>{{$user->email}}</td>
-      <td>{{$user->role->name}}</td>
+      <td><a href="{{route('admin.users.edit',$user->id)}}">{{$user->name ? $user->name : 'Not Available'}}</a></td>
+      <td>{{$user->email ? $user->email : 'Not Available'}}</td>
+      <td>{{$user->role_id ? $user->role->name : 'Not Available'}}</td>
       <td>
         
           {{$user->is_active==1 ? 'Active': 'Not Active' }}
         
         </td>
-      <td>{{$user->created_at->diffForHumans()}}</td>
-      <td>{{$user->updated_at->diffForHumans()}}</td>
+      <td>{{$user->created_at ? $user->created_at->diffForHumans() : 'Not Available'}}</td>
+      <td>{{$user->updated_at ? $user->updated_at->diffForHumans() : 'Not Available'}}</td>
 
 
       
