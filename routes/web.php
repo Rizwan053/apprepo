@@ -1,5 +1,8 @@
 <?php
 
+use App\Post;
+use App\Category;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,15 +26,14 @@ Route::get('post/{id}', ['as' => 'home.post', 'uses' => 'AdminPostsController@po
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/', function () {
-    return view('welcome');
+    $posts = Post::paginate(2);
+    $categories =Category::all();
+    return view('home', compact('posts', 'categories'));
 });
 
 Route::group(['middleware' => 'admin'], function () {
 
-    Route::get('/admin', function () {
-
-        return view('admin.index');
-    });
+    Route::get('/admin', 'AdminController@index');
 
     Route::resource('admin/users', 'AdminUsersController', ['names' => [
         'index' => 'admin.users.index',

@@ -163,6 +163,7 @@ class AdminPostsController extends Controller
 
     public function post($slug){
         $post = Post::whereSlug($slug)->firstorFail();
-        return view('post', compact('post'));
+        $categories = Category::all();
+        return view('post', compact('post', 'categories'));
     }
 }
